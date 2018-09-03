@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+    <title>TaskList</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-fluid navbar-expand-lg navbar-light bg-light ">
+        <ul class="nav w-100 d-flex justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" name="home" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" name="my-tasks" href="#">My tasks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" name="settings" href="#">Settings</a>
+            </li>
+
+            <form class="form-inline">
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">@</div>
+                        </div>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search">
+                    </div>
+                    <div class="from-group">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Password" aria-label="Search">
+                    </div>
+                </div>
+                <button class="btn btn-outline-successmy-2 my-sm-0" type="submit">Login</button>
+            </form>
+        </ul>
+
+    </nav>
+
+    <section id="home" class="d-none">
+
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container text-center">
+                <h1 class="display-4">Welcome in the best to-do-list app</h1>
+                <p class="lead">Create your account and manage your tasks</p>
+                <p class="lead">If you haven't got account you can create it by click here</p>
+                <button id="register-btn" class="btn btn-info btn-lg ">
+                    Register
+                </button>
+                <p class="mt-4">Read more about creating to-do-lists</p>
+                <i class="far fa-arrow-alt-circle-down fa-4x text-info"></i>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="card-group">
+                <div class="card">
+                    <img class="card-img-top" src="pic1640402.png" alt="Card image cap">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                            content. This content is a little bit longer.</p>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="pic2.jpg" alt="Card image cap">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section id="my-tasks" class="d-">
+
+        <div class="container">
+            <div class="jumbotron mt-3 pb-4 pt-4">
+                <h2 class="display-4">Create task</h2>
+                <form id="taskForm">
+                    <div class="form-row mt-3">
+                        <div class="form-group input-group">
+                            <input placeholder="Type title of task..." id="taskTitle" type="text" class="form-control">
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Content</span>
+                        </div>
+                        <textarea placeholder="Type description of task..." class="form-control" id="taskContent"></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-around mt-3">
+                        <div class="form-group form-inline">
+                            <label for="dateStart">Pick date of start: </label>
+                            <input class="form-control  mx-3" type="date" name="dateStart" id="dateStart">
+                        </div>
+                        <div class="form-group form-inline ">
+                            <label for="dateEnd">Pick date of end: </label>
+                            <input class="form-control  mx-3" type="date" name="dateEnd" id="dateEnd">
+                        </div>
+                        <div class="form-group form-inline">
+                            <label for="priority">Pick priority: </label>
+                            <select class="form-control mx-3" name="priority" id="priority">
+                                <option value="2">Choose priority</option>
+                                <option value="1">!</option>
+                                <option value="2">!!</option>
+                                <option value="3">!!!</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-block mt-2">Add new task</button>
+                </form>
+            </div>
+
+            <div class="output" id="output">
+
+
+            </div>
+        </div>
+    </section>
+
+    <section id="settings" class="d-none">
+        settings
+    </section>
+
+    <footer class="w-100 p-3 mt-5 bg-dark">
+        <div class="container text-center text-light">
+            Training todo app 2018
+        </div>
+
+    </footer>
+
+    <div class="wrapper d-none">
+        <div class="register-modal w-50" id="register-modal">
+            <span id="x-close">&times;</span>
+            <form id="registerForm">
+                <div class="form-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                    </div>
+                    <label for="email">Email:</label>
+                    <input placeholder="Email..." id="email" type="text" class="form-control w-100">
+                    <div class="invalid-feedback">Example invalid feedback text</div>
+                </div>
+                <div class="form-group">
+                    <label for="password1">Password:</label>
+                    <input placeholder="Type password..." type="password" name="password1" id="password1" class="form-control w-100">
+                    <div class="invalid-feedback">Example invalid feedback text</div>
+                    <small id="passwordHelpInline" class="text-muted">
+                        Must be 8-20 characters long.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password2">Repeat password:</label>
+                    <input placeholder="Repeat the same password..." type="password" name="password2" id="password2" class="form-control w-100">
+                    <div class="invalid-feedback">Example invalid feedback text</div>
+                </div>
+                <button class="btn btn-info btn-block">Submit</button>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <script>
+        var config = {
+            apiKey: "AIzaSyBdlZncgsPq5ub0DKGVqr3v7v9eHmODaVA",
+            authDomain: "simon-todo.firebaseapp.com",
+            databaseURL: "https://simon-todo.firebaseio.com",
+            projectId: "simon-todo",
+            storageBucket: "simon-todo.appspot.com",
+            messagingSenderId: "727407236561"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

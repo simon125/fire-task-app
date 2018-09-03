@@ -1,0 +1,33 @@
+#my-tasks, #settings {
+   min-height: calc(100vh - 160px);
+}
+
+.wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(43, 40, 40, 0.886);
+}
+
+
+.register-modal{
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: #aaa;
+    text: #444;
+}
+
+#x-close{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 30px;
+}
